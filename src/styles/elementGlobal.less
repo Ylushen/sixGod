@@ -1,0 +1,38 @@
+.el-dialog {
+  border-radius: 10px;
+}
+// ====================elementUIdialog组件样式修改=======================
+.el-dialog__close {
+  width: 20px;
+  height: 20px;
+  background-color: #ff8269;
+  color: #ff8269 !important;
+  font-size: 14pt;
+  border-radius: 50%;
+  transition: .2s;
+}
+.el-dialog__close:hover {
+  background-color: #ffffff;
+  color: #000000 !important;
+  transform: scale(1.1, 1.1);
+}
+
+.el-dialog__close:active {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+// 解决输入框1像素的错位 yls 2019-10-16
+.el-input--medium .el-input__inner {
+  height: auto !important;
+}
+
+// 输入框append 和 prepend 背景颜色
+.yls-search-input .el-input-group__append, .yls-search-input .el-input-group__prepend {
+  background-color: #fff !important;
+}
+
+// taps头部背景颜色
+.el-tabs--border-card > .el-tabs__header {
+  background-color: #fff !important;
+}
+
