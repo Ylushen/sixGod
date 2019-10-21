@@ -29,7 +29,19 @@ export default new Router({
           name: 'Registered',
           meta: {title: '首页'},
           component: resolve => require(['../views/registered'], resolve)
-        }
+        },
+				{
+					path: '/tome',
+					name: 'ToMe',
+					meta: {title: '首页'},
+					component: resolve => require(['../views/toMe'], resolve)
+				},
+				{
+					path: '/demo',
+					name: 'Demo',
+					meta: {title: '首页'},
+					component: resolve => require(['../views/demo'], resolve)
+				}
       ]
     },
     {
