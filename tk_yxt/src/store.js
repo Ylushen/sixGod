@@ -18,8 +18,8 @@ let store = new Vuex.Store({
     cinemaDetails: [], // 影院详情
     playDetails: [], // 获取影院的播放详情
     cities: [],
-    cityId:440300,
-    cityName:'深圳'
+    cityId: 440300,
+    cityName: '深圳'
   },
   getters: {
     cityList (state) {
@@ -43,9 +43,6 @@ let store = new Vuex.Store({
     }
   },
   mutations: {
-    setCityId (state, payload) {
-      state.CityId = payload
-    },
     setFilmList (state, payload) {
       state.filmList = payload
     },
@@ -67,18 +64,18 @@ let store = new Vuex.Store({
     setCities (state, payload) {
       state.cities = payload
     },
-    setFilmListEm(state){
-      state.filmList = [],
+    setFilmListEm (state) {
+      state.filmList = []
       state.filmListT = []
     },
-    setCityId(state,payload){
+    setCityId (state, payload) {
       state.cityId = payload
     },
-    setCityName(state,payload){
+    setCityName (state, payload) {
       state.cityName = payload
     }
   },
- 
+
   actions: {
     getCities ({ commit, state }, payload) {
       Axios.get('https://m.maizuo.com/gateway?k=6826501', {
