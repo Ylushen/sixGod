@@ -20,9 +20,7 @@ export function logout(data) {
 
 export function registered(data) {
   data = {
-    ...data,
-    sysId: '123',
-    userType: '1'
+    ...data
   };
   return request.post('/user/registered', {}, {
     data: data
