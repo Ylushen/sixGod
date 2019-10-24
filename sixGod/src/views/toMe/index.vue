@@ -1,34 +1,47 @@
 <template>
   <div class="yls-page">
-    <div class="messageBox">
-      <textarea id="messageInput" name="messageInput" cols="30" rows="10"></textarea>
+    <div class="page-mid">
+      <message-box></message-box>
+      <message-list></message-list>
     </div>
   </div>
 </template>
 
 <script>
-	export default {
-		name: 'ToMe',
+  import messageBox from './components/messageBox';
+  import messageList from './components/messageList';
+
+  export default {
+    name: 'ToMe',
+    components: {messageBox, messageList},
     data() {
-			return {
+      return {
         messageObj: {
-					message: ''
+          message: '',
+          name: '',
+          email: ''
         }
       };
     }
-	};
+  };
 </script>
 
 <style lang="less" scoped>
   @import "../../styles/globalVar.less";
+  @messageWidth: 600px;
   .yls-page {
     padding-top: @menuHeight;
     border: 10px solid red;
-    align-content: flex-start;
-    #messageInput {
-      width: 800px;
-      padding: 10px;
-      border: 1px solid rgba(200,200,200,1);
+    align-items: flex-start;
+
+    .page-mid {
+      width: @messageWidth;
     }
+
+    .buttons {
+      margin: 0;
+      padding: 0;
+    }
+
   }
 </style>
