@@ -3,8 +3,8 @@ const resetObj = (obj) => {
   const result = {};
   if (obj instanceof Object) {
     for (const item in obj) {
-      const type = Object.prototype.toString.call(obj[item]).
-      match(/^\[object (\w+)]$/)[1];
+      const type = Object.prototype.toString.call(obj[item])
+                         .match(/^\[object (\w+)]$/)[1];
       switch (type) {
         case 'Undefined':
           result[item] = void 0;

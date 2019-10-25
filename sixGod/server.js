@@ -6,6 +6,7 @@ const upload = multer();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.static('dist'));
 
 const responseLogin = {
   code: '200',
@@ -83,8 +84,6 @@ app.post('/user/logout', upload.array(), function(req, res) {
     resJson(200, '登出成功'));
   else res.json(resJson(500, '登出失败'));
 });
-
-app.get('');
 
 function resJson(code, message, data) {
   const result = {code: code, message: message, data};

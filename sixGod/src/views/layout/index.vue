@@ -1,9 +1,9 @@
 <template>
-  <div class="yls-layout">
+  <div class="yls-layout" @mousewheel.stop="updateMenu">
     <transition name="fade">
       <head-menu v-show="menuShow"></head-menu>
     </transition>
-    <router-view></router-view>
+    <router-view :menuActive="menuShow"></router-view>
     <login-dialog
       v-if="loginDialogActive"
       :visible.sync="loginDialogActive"></login-dialog>
@@ -29,10 +29,11 @@
         'loginDialogActive'
       ])
     },
-    mounted() {
-      window.addEventListener('mousewheel', e => {
+    methods: {
+      updateMenu(e) {
+        console.log(e.target);
         if ((e.wheelDelta > 0 && !this.menuShow) || (e.wheelDelta < 0 && this.menuShow)) this.menuShow = !this.menuShow;
-      });
+      }
     }
   };
 </script>

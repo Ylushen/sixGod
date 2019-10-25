@@ -9,7 +9,7 @@ module.exports = {
     node: true,
     es6: true
   },
-  extends: ["plugin:vue/recommended", "eslint:recommended"],
+  // extends: ["plugin:vue/recommended", "eslint:recommended"],
   
   // add your custom rules here
   // it is base on https://github.com/vuejs/eslint-config-vue
@@ -130,8 +130,8 @@ module.exports = {
     "no-sparse-arrays": 2,
     "no-this-before-super": 2,
     "no-throw-literal": 2,
-    "no-undef": 2,
-    "no-undef-init": 2,
+    "no-undef": 0,
+    "no-undef-init": 0,
     "no-unexpected-multiline": 2,
     "no-unmodified-loop-condition": 2,
     "no-unneeded-ternary": [2, {

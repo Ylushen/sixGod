@@ -1,24 +1,43 @@
 <template>
-  <div class="messageBox">
+  <div class="messageBox" ref="messageBox">
     <div class="messageTitle">留言板</div>
-    <textarea id="messageInput" name="messageInput" cols="20" rows="5"></textarea>
+    <textarea v-model="messageObj.message" id="messageInput" name="messageInput" cols="20" rows="5"></textarea>
     <div class="messageFloor">
-      <el-button type="success" size="mini">发表留言</el-button>
+      <el-button type="success" :loading="this.submitLoading" :disabled="!messageObj.message" size="mini"
+                 @click="submit">发表留言
+      </el-button>
     </div>
   </div>
 </template>
 
 <script>
+  import toMeApi from '@/api/module/toMeApi';
+  import {Message} from 'element-ui';
+
   export default {
     name: 'MessageBox',
     data() {
       return {
         messageObj: {
-          message: '',
-          name: '',
-          email: ''
-        }
+          message: ''
+          // name: '',
+          // email: ''
+        },
+        submitLoading: false
       };
+    },
+    methods: {
+      async submit() {
+        try {
+          this.submitLoading = true;
+          await toMeApi.submitMessage(this.messageObj);
+          this.$bus.$emit('messageBox');
+          this.messageObj = this.$commons.resetObj(this.messageObj);
+          Message.success({center: true, message: '留言成功'});
+        } finally {
+          this.submitLoading = false;
+        }
+      }
     }
   };
 </script>
@@ -49,6 +68,7 @@
       width: 100%;
       text-align: right;
     }
+
     #messageInput {
       outline: none;
       width: 100%;

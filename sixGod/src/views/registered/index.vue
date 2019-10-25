@@ -119,6 +119,7 @@
 
   @contentHeight: 100vh;
   .yls-page {
+    align-items: center;
     background: url("../../assets/images/login_upBG.jpg") no-repeat center;
     background-size: auto @contentHeight;
 

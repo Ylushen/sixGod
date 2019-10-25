@@ -1,7 +1,7 @@
 <template>
   <div class="messageList">
     <div class="messageListTitle">留言({{total}})</div>
-    <div v-for="(item, index) in data" class="aMessage borderTop">
+    <div v-for="item in pageData" class="aMessage borderTop">
       <div class="left">
         <el-avatar :size="60"
                    :src="item.imageUrl"></el-avatar>
@@ -9,7 +9,7 @@
       <div class="right">
         <div class="title">
           <div class="titleLeft">{{item.userId}}</div>
-          <div class="titleRight">{{item.time}}<span class="sort">{{' '+(index+1)+'楼'}}</span></div>
+          <div class="titleRight">{{item.time}}<span class="sort">{{' '+(item.sort)+'楼'}}</span></div>
         </div>
         <div class="content">{{item.message}}</div>
       </div>
@@ -18,66 +18,46 @@
     <div class="pagination">
       <el-pagination
         background
+        @current-change="updatePage"
         layout="prev, pager, next"
-        :total="total">
+        :total="total"
+        :page-size="pageObj.size"
+        :current-page="pageObj.count"
+      >
       </el-pagination>
     </div>
   </div>
 </template>
 
 <script>
+  import toMeApi from '@/api/module/toMeApi';
+
   export default {
     name: 'MessageList',
     data() {
       return {
-        data: [
-          {
-            userId: 'liuliuliu',
-            imageUrl: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-            message: '你是真的菜',
-            time: '2019-10-24 16:55'
-          },
-          {
-            userId: 'liuliuliu',
-            imageUrl: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-            message: '你是真的菜',
-            time: '2019-10-24 16:55'
-          },
-          {
-            userId: 'liuliuliu',
-            imageUrl: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-            message: '你是真的菜',
-            time: '2019-10-24 16:55'
-          },
-          {
-            userId: 'liuliuliu',
-            imageUrl: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-            message: '你是真的菜',
-            time: '2019-10-24 16:55'
-          },
-          {
-            userId: 'liuliuliu',
-            imageUrl: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-            message: '你是真的菜',
-            time: '2019-10-24 16:55'
-          },
-          {
-            userId: 'liuliuliu',
-            imageUrl: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-            message: '你是真的菜',
-            time: '2019-10-24 16:55'
-          },
-          {
-            userId: 'liuliuliu',
-            imageUrl: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-            message: '你是真的菜',
-            time: '2019-10-24 16:55'
-          }
-        ],
+        pageObj: {
+          size: 7,
+          count: 1
+        },
+        pageData: [],
         total: 1333
       };
     },
-    methods: {}
+    created() {
+      this.updatePage();
+      this.$bus.$on('messageBox', () => {
+        this.updatePage();
+      });
+    },
+    methods: {
+      async updatePage(count) {
+        count && (this.pageObj.count = count);
+        const resData = await toMeApi.getPage(this.pageObj);
+        this.pageData = resData.page;
+        this.total = resData.total;
+      }
+    }
   };
 </script>
 
@@ -157,6 +137,5 @@
         color: #666666;
       }
     }
-
   }
 </style>
