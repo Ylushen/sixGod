@@ -31,7 +31,6 @@
     },
     methods: {
       updateMenu(e) {
-        console.log(e.target);
         if ((e.wheelDelta > 0 && !this.menuShow) || (e.wheelDelta < 0 && this.menuShow)) this.menuShow = !this.menuShow;
       }
     }

@@ -23,6 +23,7 @@
         :total="total"
         :page-size="pageObj.size"
         :current-page="pageObj.count"
+        :hide-on-single-page="true"
       >
       </el-pagination>
     </div>
@@ -41,7 +42,7 @@
           count: 1
         },
         pageData: [],
-        total: 1333
+        total: 0
       };
     },
     created() {

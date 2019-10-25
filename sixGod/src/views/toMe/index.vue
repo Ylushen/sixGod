@@ -30,8 +30,7 @@
   @import "../../styles/globalVar.less";
   @messageWidth: 600px;
   .yls-page {
-    padding-top: @menuHeight;
-    border: 10px solid red;
+    padding-top: calc(@menuHeight + 10px);
     align-items: flex-start;
 
     .page-mid {

@@ -31,7 +31,7 @@ module.exports = {
     // 代理，将/API代理到 http://vipmp.test/admin
     proxy: {
       '/api': {
-        target: 'http://localhost:999',
+        target: 'http://localhost:999/admin',
         // 上面的参数列表中有一个changeOrigin参数, 是一个布尔值, 设置为true, 本地就会虚拟一个服务器接收你的请求并代你发送该请求,
         changeOrigin: true,
         // 重写API。/api/xxx 现在会被代理到请求 http://localhost:8080/xxx,
