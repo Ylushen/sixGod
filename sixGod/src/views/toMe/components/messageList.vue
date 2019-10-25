@@ -54,7 +54,8 @@
     methods: {
       async updatePage(count) {
         count && (this.pageObj.count = count);
-        const resData = await toMeApi.getPage(this.pageObj);
+        const res = await toMeApi.getPage(this.pageObj);
+        resData = res.data;
         this.pageData = resData.page;
         this.total = resData.total;
       }

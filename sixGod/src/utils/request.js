@@ -26,7 +26,7 @@ service.interceptors.request.use(config => {
 service.interceptors.response.use(response => {
       const res = response.data;
       if (Number(res.code) === 200) {
-        return Promise.resolve(res.data);
+        return Promise.resolve(res);
       } else {
         Message.error(res.message);
         return Promise.reject(res);

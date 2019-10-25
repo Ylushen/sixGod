@@ -31,6 +31,7 @@
 
 <script>
   import {Mixins} from '../../mixins/mixins';
+  import {Message} from 'element-ui'
 
   export default {
     name: 'LoginDialog',
